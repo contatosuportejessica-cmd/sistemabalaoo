@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balloon Business OS</title>
+  <meta name="description" content="Complete Balloon Business Management System — Clients, Events, Inventory, Rentals, Pricing & More">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/utilities.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     LOADING SCREEN
+══════════════════════════════════════════════ -->
+<div id="loading-screen">
+  <div class="loading-logo">🎈</div>
+  <div class="loading-text">Loading your balloon business...</div>
+  <div class="loading-bar"><div class="loading-fill"></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     TOAST NOTIFICATIONS
+══════════════════════════════════════════════ -->
+<div id="toast-container"></div>
+
+<!-- ═══════════════════════════════════════════
+     MAIN APP LAYOUT
+══════════════════════════════════════════════ -->
+<div id="app">
+
+  <!-- ──────── SIDEBAR ──────── -->
+  <nav class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-logo">🎈</div>
+      <div class="brand-name">Balloon Business OS</div>
+      <div class="brand-tagline">Business Command Center</div>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-label" data-i18n="nav.section.overview">Overview</div>
+      <button class="nav-link" data-section="dashboard" onclick="navigateTo('dashboard')">
+        <span class="nav-icon">📊</span><span class="nav-label" data-i18n="nav.dashboard">Dashboard</span>
+      </button>
+      <button class="nav-link" data-section="analytics" onclick="navigateTo('analytics')">
+        <span class="nav-icon">📈</span><span class="nav-label" data-i18n="nav.analytics">Analytics</span>
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-label" data-i18n="nav.section.operations">Operations</div>
+      <button class="nav-link" data-section="clients" onclick="navigateTo('clients')">
+        <span class="nav-icon">👥</span><span class="nav-label" data-i18n="nav.clients">Clients</span>
+      </button>
+      <button class="nav-link" data-section="events" onclick="navigateTo('events')">
+        <span class="nav-icon">📅</span><span class="nav-label" data-i18n="nav.events">Events</span>
+      </button>
+      <button class="nav-link" data-section="calendar" onclick="navigateTo('calendar')">
+        <span class="nav-icon">📆</span><span class="nav-label" data-i18n="nav.calendar">Calendar</span>
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-label" data-i18n="nav.section.design">Design & Inventory</div>
+      <button class="nav-link" data-section="recipes" onclick="navigateTo('recipes')">
+        <span class="nav-icon">🎈</span><span class="nav-label" data-i18n="nav.recipes">Design Recipes</span>
+      </button>
+      <button class="nav-link" data-section="inventory" onclick="navigateTo('inventory')">
+        <span class="nav-icon">📦</span><span class="nav-label" data-i18n="nav.inventory">Inventory</span>
+      </button>
+      <button class="nav-link" data-section="rentals" onclick="navigateTo('rentals')">
+        <span class="nav-icon">🎪</span><span class="nav-label" data-i18n="nav.rentals">Rentals</span>
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-label" data-i18n="nav.section.business">Business</div>
+      <button class="nav-link" data-section="pricing" onclick="navigateTo('pricing')">
+        <span class="nav-icon">💰</span><span class="nav-label" data-i18n="nav.pricing">Pricing Engine</span>
+      </button>
+      <button class="nav-link" data-section="finances" onclick="navigateTo('finances')">
+        <span class="nav-icon">💳</span><span class="nav-label" data-i18n="nav.finances">Finances</span>
+      </button>
+      <button class="nav-link" data-section="employees" onclick="navigateTo('employees')">
+        <span class="nav-icon">👷</span><span class="nav-label" data-i18n="nav.team">Team</span>
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section-label" data-i18n="nav.section.growth">Growth</div>
+      <button class="nav-link" data-section="marketing" onclick="navigateTo('marketing')">
+        <span class="nav-icon">📣</span><span class="nav-label" data-i18n="nav.marketing">Marketing</span>
+      </button>
+      <button class="nav-link" data-section="suppliers" onclick="navigateTo('suppliers')">
+        <span class="nav-icon">🏭</span><span class="nav-label" data-i18n="nav.suppliers">Suppliers</span>
+      </button>
+      <button class="nav-link" data-section="mileage" onclick="navigateTo('mileage')">
+        <span class="nav-icon">🚗</span><span class="nav-label" data-i18n="nav.mileage">Mileage</span>
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <button class="nav-link" data-section="settings" onclick="navigateTo('settings')">
+        <span class="nav-icon">⚙️</span><span class="nav-label" data-i18n="nav.settings">Settings</span>
+      </button>
+    </div>
+
+    <div class="sidebar-footer">
+      <button class="btn-sidebar-backup" onclick="exportFullBackup()" data-i18n="btn.backup_data">⬇️ Backup Data</button>
+      <div class="brand-credit">
+        Designed &amp; Developed by<br>
+        <strong>Creative Ways Tech</strong><br>
+        With Lots of Care ♥
+      </div>
+    </div>
+  </nav>
+
+  <!-- ──────── MAIN CONTENT ──────── -->
+  <div class="main-content">
+
+    <!-- TOP HEADER -->
+    <header class="top-header">
+      <button id="menu-toggle">☰</button>
+      <div class="header-search">
+        <input type="text" id="global-search" placeholder="Search clients, events...">
+        <div id="search-results" class="search-results-dropdown hidden"></div>
+      </div>
+      <div class="header-actions">
+        <button id="theme-toggle" title="Toggle dark/light mode">🌙</button>
+      </div>
+    </header>
+
+    <!-- BACKUP REMINDER BAR -->
+    <div id="backup-reminder" class="backup-bar hidden">
+      <span>💾 You have unsaved data changes. Export a backup to protect your work.</span>
+      <button id="backup-export-now" class="btn btn-sm btn-secondary" data-i18n="btn.export_now">Export Now</button>
+      <button id="backup-snooze" class="btn btn-sm btn-ghost">⏸ Pause 24 hrs</button>
+      <button id="backup-dismiss" class="btn btn-sm btn-ghost" data-i18n="btn.dismiss">Dismiss</button>
+    </div>
+
+    <!-- ════════════════════════════════════
+         SECTION: DASHBOARD
+    ═════════════════════════════════════ -->
+    <section id="section-dashboard" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-title" data-i18n="section.dashboard.title">🎈 Dashboard</div>
+          <div class="section-subtitle" data-i18n="section.dashboard.subtitle">Your balloon business command center</div>
+        </div>
+        <div class="section-actions">
+          <button class="btn btn-primary" onclick="EventsModule.openForm()">+ New Event</button>
+          <button class="btn btn-ghost" onclick="ClientsModule.openForm()" data-i18n="btn.add_client">+ Add Client</button>
+        </div>
+      </div>
+
+      <!-- KPI Grid -->
+      <div class="kpi-grid">
+        <div class="kpi-card kpi-gold"><div class="kpi-icon">💰</div><div class="kpi-value" id="kpi-total-revenue">—</div><div class="kpi-label" data-i18n="kpi.total_revenue">Total Revenue</div></div>
+        <div class="kpi-card kpi-emerald"><div class="kpi-icon">📈</div><div class="kpi-value" id="kpi-net-profit">—</div><div class="kpi-label" data-i18n="kpi.net_profit">Net Profit</div></div>
+        <div class="kpi-card"><div class="kpi-icon">📊</div><div class="kpi-value" id="kpi-profit-margin">—</div><div class="kpi-label" data-i18n="kpi.profit_margin">Profit Margin</div></div>
+        <div class="kpi-card kpi-accent"><div class="kpi-icon">📅</div><div class="kpi-value" id="kpi-upcoming-events">—</div><div class="kpi-label" data-i18n="kpi.upcoming_events">Upcoming Events</div></div>
+        <div class="kpi-card"><div class="kpi-icon">👥</div><div class="kpi-value" id="kpi-active-clients">—</div><div class="kpi-label" data-i18n="kpi.active_clients">Active Clients</div></div>
+        <div class="kpi-card"><div class="kpi-icon">💬</div><div class="kpi-value" id="kpi-open-quotes">—</div><div class="kpi-label" data-i18n="kpi.open_quotes">Open Quotes</div></div>
+        <div class="kpi-card kpi-danger"><div class="kpi-icon">💸</div><div class="kpi-value" id="kpi-total-expenses">—</div><div class="kpi-label" data-i18n="kpi.total_expenses">Total Expenses</div></div>
+        <div class="kpi-card"><div class="kpi-icon">📦</div><div class="kpi-value" id="kpi-inventory-value">—</div><div class="kpi-label" data-i18n="kpi.inventory_value">Inventory Value</div></div>
+        <div class="kpi-card"><div class="kpi-icon">🎪</div><div class="kpi-value" id="kpi-rental-utilization">—</div><div class="kpi-label" data-i18n="kpi.rental_utilization">Rental Utilization</div></div>
+        <div class="kpi-card"><div class="kpi-icon">👷</div><div class="kpi-value" id="kpi-labor-cost">—</div><div class="kpi-label" data-i18n="kpi.labor_cost">Labor Cost (MTD)</div></div>
+        <div class="kpi-card kpi-gold"><div class="kpi-icon">💵</div><div class="kpi-value" id="kpi-month-revenue">—</div><div class="kpi-label" data-i18n="kpi.month_revenue">Revenue (MTD)</div></div>
+        <div class="kpi-card kpi-emerald"><div class="kpi-icon">✨</div><div class="kpi-value" id="kpi-month-profit">—</div><div class="kpi-label" data-i18n="kpi.month_profit">Profit (MTD)</div></div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="charts-grid">
+        <div class="chart-card">
+          <div class="chart-card-title" data-i18n="chart.monthly_revenue">📊 Monthly Revenue vs Expenses</div>
+          <div class="chart-container"><canvas id="revenue-chart"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-title" data-i18n="chart.events_by_type">🎈 Events by Type</div>
+          <div class="chart-container"><canvas id="event-type-chart"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-title" data-i18n="chart.profit_trend">📈 Profit Trend</div>
+          <div class="chart-container"><canvas id="profit-trend-chart"></canvas></div>
+        </div>
+      </div>
+
+      <!-- Dashboard Bottom Grid -->
+      <div class="dashboard-grid">
+        <div class="dashboard-card">
+          <div class="dashboard-card-title" data-i18n="dashboard.upcoming">📅 Upcoming Events</div>
+          <div id="upcoming-events"></div>
+        </div>
+        <div class="dashboard-card">
+          <div class="dashboard-card-title" data-i18n="dashboard.alerts">🔔 Alerts & Reminders</div>
+          <div id="alerts-container"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION: CLIENTS
+    ═════════════════════════════════════ -->
+    <section id="section-clients" class="section">
+      <div class="section-header">
+        <div><div class="section-title" data-i18n="section.clients.title">👥 Clients</div><div class="section-subtitle" data-i18n="section.clients.subtitle">Your client relationship center</div></div>
+        <div class="section-actions">
+          <button class="btn btn-primary" onclick="ClientsModule.openForm()" data-i18n="btn.add_client">+ Add Client</button>
+        </div>
+      </div>
+      <div class="table-container">
+        <div class="table-toolbar">
+          <div class="search-input-wrapper">
+            <input type="text" placeholder="Search clients..." data-i18n-placeholder="misc.search_clients" oninput="ClientsModule.setSearch(this.value); ClientsModule.renderList()">
+          </div>
+          <button class="btn btn-ghost btn-sm" onclick="exportTableToCSV(['Name','Email','Phone','Source','Added'],ClientsModule.getFiltered().map(c=>[c.name,c.email,c.phone,c.referralSource||'Direct',c.createdAt?.slice(0,10)]),'clients.csv')">⬇️ Export CSV</button>
+        </div>
+        <div class="table-scroll">
+          <div id="clients-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION: EVENTS
+    ═════════════════════════════════════ -->
+    <section id="section-events" class="section">
+      <div class="section-header">
+        <div><div class="section-title" data-i18n="section.events.title">📅 Events</div><div class="section-subtitle" data-i18n="section.events.subtitle">Book, track, and manage every event</div></div>
+        <div class="section-actions">
+          <button class="btn btn-primary" onclick="EventsModule.openForm()" data-i18n="btn.book_event">+ Book Event</button>
+        </div>
+      </div>
+      <div class="table-container">
+        <div class="table-toolbar">
+          <div class="filter-chips" id="event-status-filters"></div>
+          <div class="search-input-wrapper">
+            <input type="text" placeholder="Search events..." data-i18n-placeholder="misc.search_events" oninput="EventsModule.setSearch(this.value); EventsModule.renderList()">
+          </div>
+          <button class="btn btn-ghost btn-sm" onclick="exportTableToCSV(['Event','Client','Date','Type','Status','Amount'],EventsModule.getFiltered().map(e=>[e.name,e.clientName,e.date,e.eventType,e.status,e.totalAmount||0]),'events.csv')">⬇️ Export CSV</button>
+        </div>
+        <div class="table-scroll">
+          <div id="events-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION: CALENDAR
+    ═════════════════════════════════════ -->
+    <section id="section-calendar" class="section">
+      <div class="section-header">
+        <div><div class="section-title" data-i18n="section.calendar.title">📆 Event Calendar</div><div class="section-subtitle" data-i18n="section.calendar.subtitle">Visual scheduling and timeline view</div></div>
+        <div class="section-actions">
+          <button class="btn btn-primary" onclick="EventsModule.openForm()" data-i18n="btn.book_event">+ Book Event</button>
+        </div>
+      </div>
+      <div class="section-panel">
+        <div id="calendar-container"></div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION: DESIGN RECIPES
+    ═════════════════════════════════════ -->
+    <section id="section-recipes" class="section">
+      <div class="section-header">
+        <div><div class="section-title" data-i18n="section.recipes.title">🎈 Design Recipes</div><div class="section-subtitle" data-i18n="section.recipes.subtitle">Balloon design planner and recipe builder</div></div>
+        <div class="section-actions">
+          <button class="btn btn-primary" onclick="RecipesModule.openForm()" data-i18n="btn.new_recipe">+ New Recipe</button>
+        </div>
+      </div>
+      <div class="table-toolbar mb-4" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px 16px;">
+        <div class="search-input-wrapper">
+          <input type="text" placeholder="Search recipes..." data-i18n-placeholder="misc.search_recipes" oninput="RecipesModule.setSearch(this.value); RecipesModule.renderList()">
+        </div>
+      </div>
+      <div id="recipes-list"></div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION: INVENTORY
+    ═════════════════════════════════════ -->
+    <section id="section-inventory" class="section">
+      <div class="section-header">
+        <div><div class="section-title" data-i18n="section.inventory.title">📦 Inventory</div><div class="section-subtitle" data-i18n="section.inventory.subtitle">Track all balloon supplies and accessories</div></div>
+        <div class="section-actions">
+          <button class="btn btn-primary" onclick="InventoryModule.openForm()" data-i18n="btn.add_item">+ Add Item</button>
+        </div>
+      </div>
+      <div class="kpi-grid" id="inventory-stats"></div>
+      <div class="table-container">
+        <div class="table-toolbar">
+          <select class="form-input" style="width:auto" onchange="InventoryModule.setFilter(this.value); InventoryModule.renderList()">
+            <option value="all" data-i18n="misc.all_categories">All Categories</option>
+            ${['Balloons','Foil Balloons','Accessories','Frames','Weights','Pumps','Backdrops','Event Supplies','Ribbons','Confetti','Other'].map(c => `<option value="${c}">${c}</option>`).join('')}
+          </select>
+          <div class="search-input-wrapper">
+            <input type="text" placeholder="Search inventory..." data-i18n-placeholder="misc.search_inventory" oninput="InventoryModule.setSearch(this.value); InventoryModule.renderList()">
+          </div>
+          <button class="btn btn-ghost btn-sm" onclick="exportTableToCSV(['Item','Category','Qty','Unit Cost','Total Value'],InventoryModule.getFiltered().map(i=>[i.name,i.category,i.quantity,i.unitCost,(i.quantity||0)*(i.unitCost||0)]),'inventory.csv')">⬇️ Export CSV</button>
+        </div>
+        <div class="table-scroll">
+          <div id="inventory-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION: RENTALS
+    ═════════════════════════════════════ -->
+    <section id="section-rentals" class="section">
+      <div class="section-header">
+        <div><div class="section-title" data-i18n="section.rentals.title">🎪 Rental Management</div><div class="section-subtitle" data-i18n="section.rentals.subtitle">Backdrops, stands, props, and more</div></div>
+        <div class="section-actions">
+          <button class="btn btn-primary" onclick="RentalsModule.openItemForm()" data-i18n="btn.add_rental_item">+ Add Rental Item</button>
+        </div>
+      </div>
+      <div class="kpi-grid" id="rental-stats"></div>
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchTab(this,'rentals-tab-items')" data-i18n="tab.rental_inventory">Rental Inventory</button>
+        <button class="tab-btn" onclick="switchTab(this,'rentals-tab-history')" data-i18n="tab.rental_history">Rental History</button>
+      </div>
+      <div id="rentals-tab-items" class="tab-content active">
+        <div class="table-container">
+          <div class="table-scroll"><div id="rental-items-list"></div></div>
+        </div>
+      </div>
+      <div id="rentals-tab-history" class="tab-content">
+        <div class="table-container">
+          <div class="table-scroll"><div id="rental-history-list"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION: PRICING ENGINE
+    ═════════════════════════════════════ -->
+    <section id="section-pricing" class="section">
+      <div class="section-header">
+        <div><div class="section-title" data-i18n="section.pricing.title">💰 Pricing Engine</div><div class="section-subtitle" data-i18n="section.pricing.subtitle">Smart event pricing and profit calculator</div></div>
+      </div>
+      <div class="section-panel">
+        <div id="pricing-calculator"></div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION: FINANCES
+    ═════════════════════════════════════ -->
+    <section id="section-finances" class="section">
+      <div class="section-header">
+        <div><div class="section-title" data-i18n="section.finances.title">💳 Finances</div><div class="section-subtitle" data-i18n="section.finances.subtitle">Income, expenses, and profit tracking</div></div>
+        <div class="section-actions">
+          <button class="btn btn-success" onclick="FinancesModule.openForm()" data-i18n="btn.add_transaction">+ Add Transaction</button>
+        </div>
+      </div>
+      <div class="kpi-grid" id="finance-stats"></div>
+      <div class="table-container">
+        <div class="table-toolbar">
+          <select id="finance-type-filter" class="form-input" style="width:auto">
+            <option value="all" data-i18n="misc.all_types">All Types</option>
+            <option value="income" data-i18n="misc.income">Income Only</option>
+            <option value="expense" data-i18n="misc.expense">Expenses Only</option>
+          </select>
+          <div id="finance-drp"></div>
+          <button class="btn btn-ghost btn-sm" onclick="exportTableToCSV(['Date','Description','Type','Category','Amount'],FinancesModule.getFiltered().map(f=>[f.date,f.description,f.type,f.category,f.amount]),'finances.csv')">⬇️ Export CSV</button>
+        </div>
+        <div class="table-scroll">
+          <div id="finances-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION: EMPLOYEES
+    ═════════════════════════════════════ -->
+    <section id="section-employees" class="section">
+      <div class="section-header">
+        <div><div class="section-title" data-i18n="section.employees.title">👷 Team Management</div><div class="section-subtitle" data-i18n="section.employees.subtitle">Employees, scheduling, and timesheets</div></div>
+        <div class="section-actions">
+          <button class="btn btn-primary" onclick="EmployeesModule.openForm()" data-i18n="btn.add_employee">+ Add Employee</button>
+        </div>
+      </div>
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchTab(this,'emp-tab-list')" data-i18n="tab.team_members">Team Members</button>
+        <button class="tab-btn" onclick="switchTab(this,'emp-tab-timesheets')" data-i18n="tab.timesheets">Timesheets</button>
+      </div>
+      <div id="emp-tab-list" class="tab-content active">
+        <div class="table-container">
+          <div class="table-scroll"><div id="employees-list"></div></div>
+        </div>
+      </div>
+      <div id="emp-tab-timesheets" class="tab-content">
+        <div class="table-container">
+          <div class="table-scroll"><div id="timesheets-list"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION: MARKETING
+    ═════════════════════════════════════ -->
+    <section id="section-marketing" class="section">
+      <div class="section-header">
+        <div><div class="section-title" data-i18n="section.marketing.title">📣 Marketing</div><div class="section-subtitle" data-i18n="section.marketing.subtitle">Campaigns, content calendar, and ROI tracking</div></div>
+        <div class="section-actions">
+          <button class="btn btn-primary" onclick="MarketingModule.openCampaignForm()" data-i18n="btn.add_campaign">+ Add Campaign</button>
+          <button class="btn btn-ghost" onclick="MarketingModule.openPostForm()" data-i18n="btn.schedule_post">+ Schedule Post</button>
+        </div>
+      </div>
+      <div class="kpi-grid" id="marketing-stats"></div>
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchTab(this,'mkt-tab-campaigns')" data-i18n="tab.campaigns">Campaigns</button>
+        <button class="tab-btn" onclick="switchTab(this,'mkt-tab-content')" data-i18n="tab.content_calendar">Content Calendar</button>
+      </div>
+      <div id="mkt-tab-campaigns" class="tab-content active">
+        <div class="table-container">
+          <div class="table-scroll"><div id="campaigns-list"></div></div>
+        </div>
+      </div>
+      <div id="mkt-tab-content" class="tab-content">
+        <div class="table-container">
+          <div class="table-scroll"><div id="content-calendar"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION: SUPPLIERS
+    ═════════════════════════════════════ -->
+    <section id="section-suppliers" class="section">
+      <div class="section-header">
+        <div><div class="section-title" data-i18n="section.suppliers.title">🏭 Suppliers</div><div class="section-subtitle" data-i18n="section.suppliers.subtitle">Vendor contacts and order history</div></div>
+        <div class="section-actions">
+          <button class="btn btn-primary" onclick="SuppliersModule.openForm()" data-i18n="btn.add_supplier">+ Add Supplier</button>
+        </div>
+      </div>
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchTab(this,'sup-tab-list')" data-i18n="tab.suppliers">Suppliers</button>
+        <button class="tab-btn" onclick="switchTab(this,'sup-tab-orders')" data-i18n="tab.order_history">Order History</button>
+      </div>
+      <div id="sup-tab-list" class="tab-content active">
+        <div id="suppliers-list"></div>
+      </div>
+      <div id="sup-tab-orders" class="tab-content">
+        <div class="table-container">
+          <div class="table-scroll"><div id="orders-list"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION: MILEAGE
+    ═════════════════════════════════════ -->
+    <section id="section-mileage" class="section">
+      <div class="section-header">
+        <div><div class="section-title" data-i18n="section.mileage.title">🚗 Mileage Tracker</div><div class="section-subtitle" data-i18n="section.mileage.subtitle">Track business travel for tax deductions</div></div>
+        <div class="section-actions">
+          <button class="btn btn-primary" onclick="MileageModule.openForm()" data-i18n="btn.log_trip">+ Log Trip</button>
+          <button class="btn btn-ghost" onclick="MileageModule.exportReport()" data-i18n="btn.tax_report">⬇️ Tax Report</button>
+        </div>
+      </div>
+      <div class="kpi-grid" id="mileage-stats"></div>
+      <div class="table-container">
+        <div class="table-toolbar">
+          <div id="mileage-drp"></div>
+        </div>
+        <div class="table-scroll"><div id="mileage-list"></div></div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION: ANALYTICS
+    ═════════════════════════════════════ -->
+    <section id="section-analytics" class="section">
+      <div class="section-header">
+        <div><div class="section-title" data-i18n="section.analytics.title">📈 Analytics</div><div class="section-subtitle" data-i18n="section.analytics.subtitle">Deep insights into your business performance</div></div>
+      </div>
+      <div class="analytics-toolbar">
+        <label data-i18n="analytics.date_range">Date Range:</label>
+        <div id="analytics-drp"></div>
+      </div>
+      <div class="kpi-grid" id="analytics-kpis"></div>
+      <div class="charts-grid">
+        <div class="chart-card" style="grid-column: span 2" >
+          <div class="chart-card-title" data-i18n="chart.revenue_expenses">💰 Revenue, Expenses & Profit (6 Months)</div>
+          <div class="chart-container" style="height:280px"><canvas id="analytics-revenue-chart"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-title" data-i18n="chart.expense_breakdown">🎯 Expense Breakdown</div>
+          <div class="chart-container"><canvas id="analytics-expense-chart"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-title" data-i18n="chart.event_status">📅 Event Status Distribution</div>
+          <div class="chart-container"><canvas id="analytics-event-status-chart"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-title" data-i18n="chart.monthly_bookings">📊 Monthly Bookings Trend</div>
+          <div class="chart-container"><canvas id="analytics-bookings-chart"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-title">💵 Revenue by Event Type</div>
+          <div class="chart-container"><canvas id="analytics-revenue-by-type-chart"></canvas></div>
+        </div>
+      </div>
+      <div class="dashboard-grid">
+        <div class="section-panel">
+          <h4 class="mb-4" style="font-weight:700" data-i18n="analytics.expense_by_cat">Expense Breakdown by Category</h4>
+          <div id="expense-category-table"></div>
+        </div>
+        <div class="section-panel">
+          <h4 class="mb-4" style="font-weight:700" data-i18n="analytics.events_by_status">Events by Status</h4>
+          <div id="event-status-table"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION: SETTINGS
+    ═════════════════════════════════════ -->
+    <section id="section-settings" class="section">
+      <div class="section-header">
+        <div><div class="section-title" data-i18n="section.settings.title">⚙️ Settings</div><div class="section-subtitle" data-i18n="section.settings.subtitle">Configure your business and preferences</div></div>
+      </div>
+      <div id="settings-content"></div>
+    </section>
+
+  </div><!-- end .main-content -->
+</div><!-- end #app -->
+
+<!-- ═══════════════════════════════════════════
+     MODALS
+══════════════════════════════════════════════ -->
+
+<!-- CLIENT MODAL -->
+<div id="client-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="client-modal-title">New Client</h3>
+      <button class="modal-close" onclick="closeModal('client-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="client-id">
+      <div class="form-grid">
+        <div class="form-group"><label>Full Name *</label><input class="form-input" id="client-name" placeholder="Jane Smith"></div>
+        <div class="form-group"><label>Company</label><input class="form-input" id="client-company" placeholder="ABC Events"></div>
+        <div class="form-group"><label>Email</label><input class="form-input" type="email" id="client-email" placeholder="jane@email.com"></div>
+        <div class="form-group"><label>Phone</label><input class="form-input" id="client-phone" placeholder="(555) 000-0000"></div>
+        <div class="form-group full"><label>Address</label><input class="form-input" id="client-address" placeholder="123 Main St, City, State"></div>
+        <div class="form-group"><label>Referral Source</label><input class="form-input" id="client-source" placeholder="Instagram, Google, Referral..."></div>
+        <div class="form-group full"><label>Notes</label><textarea class="form-input" id="client-notes" placeholder="Client preferences, event history notes..."></textarea></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('client-modal')" data-i18n="btn.cancel">Cancel</button>
+      <button class="btn btn-primary" onclick="ClientsModule.submitForm()" data-i18n="btn.save">Save Client</button>
+    </div>
+  </div>
+</div>
+
+<!-- CLIENT PROFILE MODAL -->
+<div id="client-profile-modal" class="modal-overlay">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h3>Client Profile</h3>
+      <button class="modal-close" onclick="closeModal('client-profile-modal')">×</button>
+    </div>
+    <div class="modal-body" id="client-profile-content"></div>
+  </div>
+</div>
+
+<!-- INVOICE MODAL -->
+<div id="invoice-modal" class="modal-overlay">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h3>Invoice Preview</h3>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="btn btn-primary" onclick="InvoiceModule.printInvoice()">🖨 Print / Save PDF</button>
+        <button class="modal-close" onclick="closeModal('invoice-modal')">×</button>
+      </div>
+    </div>
+    <div class="modal-body" id="invoice-content"></div>
+  </div>
+</div>
+
+<!-- EVENT MODAL -->
+<div id="event-modal" class="modal-overlay">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h3 id="event-modal-title">New Event</h3>
+      <button class="modal-close" onclick="closeModal('event-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="event-id">
+      <div class="form-grid">
+        <div class="form-group full"><label>Event Name *</label><input class="form-input" id="event-name" placeholder="Smith Wedding Reception"></div>
+        <div class="form-group"><label>Client</label><select class="form-input" id="event-client"></select></div>
+        <div class="form-group"><label>Event Type</label>
+          <select class="form-input" id="event-type">
+            <option value="">— Select Type —</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Event Date *</label><input class="form-input" type="date" id="event-date"></div>
+        <div class="form-group"><label>Setup Time</label><input class="form-input" id="event-setup-time" placeholder="9:00 AM"></div>
+        <div class="form-group"><label>Breakdown Time</label><input class="form-input" id="event-breakdown-time" placeholder="11:00 PM"></div>
+        <div class="form-group full"><label>Location / Venue</label><input class="form-input" id="event-location" placeholder="Grand Ballroom, 123 Main St"></div>
+        <div class="form-group"><label>Status</label>
+          <select class="form-input" id="event-status"></select>
+        </div>
+        <div class="form-group"><label>Budget ($)</label><input class="form-input" type="number" id="event-budget" placeholder="0.00"></div>
+        <div class="form-group"><label>Total Amount ($)</label><input class="form-input" type="number" id="event-amount" placeholder="0.00"></div>
+        <div class="form-group"><label>Deposit Received ($)</label><input class="form-input" type="number" id="event-deposit" placeholder="0.00"></div>
+        <div class="form-group full"><label>Notes</label><textarea class="form-input" id="event-notes" placeholder="Event details, special requests, design ideas..."></textarea></div>
+        <div class="form-group full"><label>Assigned Team Members</label><div id="event-team"></div></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('event-modal')" data-i18n="btn.cancel">Cancel</button>
+      <button class="btn btn-primary" onclick="EventsModule.submitForm()" data-i18n="btn.save">Save Event</button>
+    </div>
+  </div>
+</div>
+
+<!-- RECIPE MODAL -->
+<div id="recipe-modal" class="modal-overlay">
+  <div class="modal modal-xl">
+    <div class="modal-header">
+      <h3 id="recipe-modal-title">New Design Recipe</h3>
+      <button class="modal-close" onclick="closeModal('recipe-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="recipe-id">
+      <div class="form-grid">
+        <div class="form-group"><label>Recipe Name *</label><input class="form-input" id="recipe-name" placeholder="Pink Princess Arch"></div>
+        <div class="form-group"><label>Design Type</label>
+          <select class="form-input" id="recipe-type">
+            <option value="">— Select Type —</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Theme Colors (comma separated)</label><input class="form-input" id="recipe-colors" placeholder="#EC4899, #F9A8D4, #fff"></div>
+        <div class="form-group"><label>Setup Duration</label><input class="form-input" id="recipe-setup-duration" placeholder="2 hours"></div>
+        <div class="form-group"><label>Labor Hours</label><input class="form-input" type="number" id="recipe-labor-hours" placeholder="3" step="0.5" oninput="RecipesModule.updateRecipeTotals()"></div>
+        <div class="form-group"><label>Labor Rate ($/hr)</label><input class="form-input" type="number" id="recipe-labor-rate" value="15" step="0.01" oninput="RecipesModule.updateRecipeTotals()"></div>
+        <div class="form-group full"><label>Notes / Instructions</label><textarea class="form-input" id="recipe-notes" placeholder="Design notes, tips, client preferences..."></textarea></div>
+      </div>
+      <div class="divider"></div>
+      <div class="flex-between mb-4">
+        <h4 style="font-weight:700">🎈 Materials / Ingredients</h4>
+        <button class="btn btn-ghost btn-sm" id="add-ingredient">+ Add Item</button>
+      </div>
+      <div style="display:grid;grid-template-columns:2fr 1fr 80px 90px 36px;gap:8px;margin-bottom:6px;padding:0 2px">
+        <span style="font-size:.7rem;font-weight:700;color:var(--text-muted);text-transform:uppercase">Item Name</span>
+        <span style="font-size:.7rem;font-weight:700;color:var(--text-muted);text-transform:uppercase">Size</span>
+        <span style="font-size:.7rem;font-weight:700;color:var(--text-muted);text-transform:uppercase">Qty</span>
+        <span style="font-size:.7rem;font-weight:700;color:var(--text-muted);text-transform:uppercase">Unit $</span>
+        <span></span>
+      </div>
+      <div id="ingredients-container"></div>
+      <div id="recipe-cost-preview" class="recipe-cost-preview"></div>
+
+      <div class="divider"></div>
+      <div class="flex-between mb-3">
+        <h4 style="font-weight:700">📷 Setup Photos <span style="font-size:0.8rem;color:var(--text-muted);font-weight:400">(max 3)</span></h4>
+      </div>
+      <div class="recipe-photo-previews" id="recipe-photo-previews"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('recipe-modal')" data-i18n="btn.cancel">Cancel</button>
+      <button class="btn btn-primary" onclick="RecipesModule.submitForm()" data-i18n="btn.save">Save Recipe</button>
+    </div>
+  </div>
+</div>
+
+<!-- RECIPE VIEW MODAL -->
+<div id="recipe-view-modal" class="modal-overlay">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <h3>Design Recipe</h3>
+      <button class="modal-close" onclick="closeModal('recipe-view-modal')">×</button>
+    </div>
+    <div class="modal-body" id="recipe-view-content"></div>
+  </div>
+</div>
+
+<!-- INVENTORY MODAL -->
+<div id="inventory-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="inventory-modal-title">New Inventory Item</h3>
+      <button class="modal-close" onclick="closeModal('inventory-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="inventory-id">
+      <div class="form-grid">
+        <div class="form-group full"><label>Item Name *</label><input class="form-input" id="inventory-name" placeholder="11 inch Pink Balloons"></div>
+        <div class="form-group"><label>SKU / Code</label><input class="form-input" id="inventory-sku" placeholder="BAL-11-PNK"></div>
+        <div class="form-group"><label>Category</label>
+          <select class="form-input" id="inventory-category">
+            <option value="">— Select —</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Quantity</label><input class="form-input" type="number" id="inventory-quantity" placeholder="0"></div>
+        <div class="form-group"><label>Reorder Point</label><input class="form-input" type="number" id="inventory-reorder" placeholder="10"></div>
+        <div class="form-group"><label>Unit Cost ($)</label><input class="form-input" type="number" id="inventory-cost" placeholder="0.00" step="0.01"></div>
+        <div class="form-group"><label>Supplier</label>
+          <select class="form-input" id="inventory-supplier">
+            <option value="">— No Supplier —</option>
+          </select>
+        </div>
+        <div class="form-group full"><label>Notes</label><textarea class="form-input" id="inventory-notes" rows="2" placeholder="Storage location, notes..."></textarea></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('inventory-modal')" data-i18n="btn.cancel">Cancel</button>
+      <button class="btn btn-primary" onclick="InventoryModule.submitForm()" data-i18n="btn.save">Save Item</button>
+    </div>
+  </div>
+</div>
+
+<!-- RENTAL ITEM MODAL -->
+<div id="rental-item-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Rental Item</h3>
+      <button class="modal-close" onclick="closeModal('rental-item-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="rental-item-id">
+      <div class="form-grid">
+        <div class="form-group full"><label>Item Name *</label><input class="form-input" id="rental-item-name" placeholder="Gold Sequin Backdrop"></div>
+        <div class="form-group"><label>Category</label><input class="form-input" id="rental-item-category" placeholder="Backdrop, Stand, Prop..."></div>
+        <div class="form-group full"><label>Description</label><textarea class="form-input" id="rental-item-description" rows="2" placeholder="Size, color, condition notes..."></textarea></div>
+        <div class="form-group"><label>Daily Rental Rate ($)</label><input class="form-input" type="number" id="rental-item-rate" placeholder="75.00" step="0.01"></div>
+        <div class="form-group"><label>Security Deposit ($)</label><input class="form-input" type="number" id="rental-item-deposit" placeholder="100.00" step="0.01"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('rental-item-modal')" data-i18n="btn.cancel">Cancel</button>
+      <button class="btn btn-primary" onclick="RentalsModule.submitItemForm()" data-i18n="btn.save">Save Item</button>
+    </div>
+  </div>
+</div>
+
+<!-- RENTAL OUT MODAL -->
+<div id="rental-out-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Rent Out: <span id="rental-out-item-name"></span></h3>
+      <button class="modal-close" onclick="closeModal('rental-out-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="rental-out-item-id">
+      <div class="form-grid">
+        <div class="form-group full"><label>Client</label><select class="form-input" id="rental-out-client"></select></div>
+        <div class="form-group"><label>Out Date *</label><input class="form-input" type="date" id="rental-out-date"></div>
+        <div class="form-group"><label>Return Date *</label><input class="form-input" type="date" id="rental-out-return"></div>
+        <div class="form-group"><label>Rental Fee ($)</label><input class="form-input" type="number" id="rental-out-fee" step="0.01"></div>
+        <div class="form-group full"><label>Notes</label><textarea class="form-input" id="rental-out-notes" rows="2"></textarea></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('rental-out-modal')" data-i18n="btn.cancel">Cancel</button>
+      <button class="btn btn-primary" onclick="RentalsModule.submitRentalForm()" data-i18n="btn.rent_out">Rent Out</button>
+    </div>
+  </div>
+</div>
+
+<!-- FINANCE MODAL -->
+<div id="finance-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="finance-modal-title">Add Transaction</h3>
+      <button class="modal-close" onclick="closeModal('finance-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="finance-id">
+      <div class="form-grid">
+        <div class="form-group"><label>Type *</label>
+          <select class="form-input" id="finance-type">
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Date *</label><input class="form-input" type="date" id="finance-date"></div>
+        <div class="form-group full"><label>Description</label><input class="form-input" id="finance-description" placeholder="Event payment, supply purchase..."></div>
+        <div class="form-group"><label>Amount ($) *</label><input class="form-input" type="number" id="finance-amount" placeholder="0.00" step="0.01"></div>
+        <div class="form-group"><label>Category</label>
+          <select class="form-input" id="finance-category">
+            <option value="">— Select —</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Payment Method</label>
+          <select class="form-input" id="finance-payment">
+            <option value="">— Select —</option>
+            <option>Cash</option><option>Check</option><option>Venmo</option>
+            <option>PayPal</option><option>Zelle</option><option>Credit Card</option><option>Bank Transfer</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Linked Event</label><select class="form-input" id="finance-event"></select></div>
+        <div class="form-group full"><label>Notes</label><textarea class="form-input" id="finance-notes" rows="2" placeholder="Additional notes..."></textarea></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('finance-modal')" data-i18n="btn.cancel">Cancel</button>
+      <button class="btn btn-primary" onclick="FinancesModule.submitForm()" data-i18n="btn.save">Save Transaction</button>
+    </div>
+  </div>
+</div>
+
+<!-- EMPLOYEE MODAL -->
+<div id="employee-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Team Member</h3>
+      <button class="modal-close" onclick="closeModal('employee-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="employee-id">
+      <div class="form-grid">
+        <div class="form-group full"><label>Full Name *</label><input class="form-input" id="employee-name" placeholder="Alex Johnson"></div>
+        <div class="form-group"><label>Role</label><input class="form-input" id="employee-role" placeholder="Balloon Artist, Driver, Helper..."></div>
+        <div class="form-group"><label>Email</label><input class="form-input" type="email" id="employee-email"></div>
+        <div class="form-group"><label>Phone</label><input class="form-input" id="employee-phone"></div>
+        <div class="form-group"><label>Hourly Rate ($)</label><input class="form-input" type="number" id="employee-rate" placeholder="15.00" step="0.01"></div>
+        <div class="form-group"><label><input type="checkbox" id="employee-active" checked> Active Employee</label></div>
+        <div class="form-group full"><label>Notes</label><textarea class="form-input" id="employee-notes" rows="2"></textarea></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('employee-modal')" data-i18n="btn.cancel">Cancel</button>
+      <button class="btn btn-primary" onclick="EmployeesModule.submitForm()" data-i18n="btn.save">Save Employee</button>
+    </div>
+  </div>
+</div>
+
+<!-- TIMESHEET MODAL -->
+<div id="timesheet-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Log Hours — <span id="ts-employee-name"></span></h3>
+      <button class="modal-close" onclick="closeModal('timesheet-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="ts-employee-id">
+      <div class="form-grid">
+        <div class="form-group"><label>Date *</label><input class="form-input" type="date" id="ts-date"></div>
+        <div class="form-group"><label>Hours Worked *</label><input class="form-input" type="number" id="ts-hours" placeholder="4.5" step="0.5"></div>
+        <div class="form-group full"><label>Linked Event</label><select class="form-input" id="ts-event"></select></div>
+        <div class="form-group full"><label>Notes</label><textarea class="form-input" id="ts-notes" rows="2"></textarea></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('timesheet-modal')" data-i18n="btn.cancel">Cancel</button>
+      <button class="btn btn-primary" onclick="EmployeesModule.submitTimesheetForm()" data-i18n="btn.save">Save Hours</button>
+    </div>
+  </div>
+</div>
+
+<!-- CAMPAIGN MODAL -->
+<div id="campaign-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Marketing Campaign</h3>
+      <button class="modal-close" onclick="closeModal('campaign-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="campaign-id">
+      <div class="form-grid">
+        <div class="form-group full"><label>Campaign Name *</label><input class="form-input" id="campaign-name" placeholder="Spring Promo Instagram"></div>
+        <div class="form-group"><label>Platform</label>
+          <select class="form-input" id="campaign-platform">
+            <option value="">— Select —</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Start Date</label><input class="form-input" type="date" id="campaign-start"></div>
+        <div class="form-group"><label>End Date</label><input class="form-input" type="date" id="campaign-end"></div>
+        <div class="form-group"><label>Ad Spend ($)</label><input class="form-input" type="number" id="campaign-spend" placeholder="0.00" step="0.01"></div>
+        <div class="form-group"><label>Leads Generated</label><input class="form-input" type="number" id="campaign-leads" placeholder="0"></div>
+        <div class="form-group"><label>Revenue Generated ($)</label><input class="form-input" type="number" id="campaign-revenue" placeholder="0.00" step="0.01"></div>
+        <div class="form-group full"><label>Notes</label><textarea class="form-input" id="campaign-notes" rows="2"></textarea></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('campaign-modal')" data-i18n="btn.cancel">Cancel</button>
+      <button class="btn btn-primary" onclick="MarketingModule.submitCampaignForm()" data-i18n="btn.save">Save Campaign</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT POST MODAL -->
+<div id="post-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Schedule Content Post</h3>
+      <button class="modal-close" onclick="closeModal('post-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group"><label>Platform</label>
+          <select class="form-input" id="post-platform">
+            <option value="">— Select —</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Scheduled Date</label><input class="form-input" type="date" id="post-date"></div>
+        <div class="form-group full"><label>Caption</label><textarea class="form-input" id="post-caption" rows="3" placeholder="Write your post caption..."></textarea></div>
+        <div class="form-group full"><label>Hashtags</label><input class="form-input" id="post-hashtags" placeholder="#balloons #partydecorations #birthdayparty"></div>
+        <div class="form-group"><label>Status</label>
+          <select class="form-input" id="post-status">
+            <option value="Draft">Draft</option>
+            <option value="Scheduled">Scheduled</option>
+            <option value="Posted">Posted</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('post-modal')" data-i18n="btn.cancel">Cancel</button>
+      <button class="btn btn-primary" onclick="MarketingModule.submitPostForm()" data-i18n="btn.save">Save Post</button>
+    </div>
+  </div>
+</div>
+
+<!-- SUPPLIER MODAL -->
+<div id="supplier-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Supplier</h3>
+      <button class="modal-close" onclick="closeModal('supplier-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="supplier-id">
+      <div class="form-grid">
+        <div class="form-group full"><label>Supplier Name *</label><input class="form-input" id="supplier-name" placeholder="Balloon World USA"></div>
+        <div class="form-group"><label>Email</label><input class="form-input" type="email" id="supplier-email"></div>
+        <div class="form-group"><label>Phone</label><input class="form-input" id="supplier-phone"></div>
+        <div class="form-group full"><label>Website</label><input class="form-input" id="supplier-website" placeholder="https://..."></div>
+        <div class="form-group"><label>Lead Time (days)</label><input class="form-input" type="number" id="supplier-lead-time" placeholder="3"></div>
+        <div class="form-group"><label>Minimum Order ($)</label><input class="form-input" type="number" id="supplier-min-order" placeholder="50.00" step="0.01"></div>
+        <div class="form-group full"><label class="checkbox-label"><input type="checkbox" id="supplier-preferred"> ⭐ Preferred Supplier</label></div>
+        <div class="form-group full"><label>Notes</label><textarea class="form-input" id="supplier-notes" rows="2" placeholder="Account number, discount info, product specialties..."></textarea></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('supplier-modal')" data-i18n="btn.cancel">Cancel</button>
+      <button class="btn btn-primary" onclick="SuppliersModule.submitForm()" data-i18n="btn.save">Save Supplier</button>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER MODAL -->
+<div id="order-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Log Order — <span id="order-supplier-name"></span></h3>
+      <button class="modal-close" onclick="closeModal('order-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="order-supplier-id">
+      <div class="form-grid">
+        <div class="form-group"><label>Order Date</label><input class="form-input" type="date" id="order-date"></div>
+        <div class="form-group"><label>Status</label>
+          <select class="form-input" id="order-status">
+            <option>Pending</option><option>Shipped</option><option>Received</option>
+          </select>
+        </div>
+        <div class="form-group full"><label>Items Ordered</label><textarea class="form-input" id="order-items" rows="3" placeholder="100x 11in Pink Balloons, 50x White Foil Stars..."></textarea></div>
+        <div class="form-group"><label>Order Total ($)</label><input class="form-input" type="number" id="order-total" placeholder="0.00" step="0.01"></div>
+        <div class="form-group full"><label>Notes</label><textarea class="form-input" id="order-notes" rows="2"></textarea></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('order-modal')" data-i18n="btn.cancel">Cancel</button>
+      <button class="btn btn-primary" onclick="SuppliersModule.submitOrderForm()" data-i18n="btn.save">Save Order</button>
+    </div>
+  </div>
+</div>
+
+<!-- MILEAGE MODAL -->
+<div id="mileage-modal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Log Trip</h3>
+      <button class="modal-close" onclick="closeModal('mileage-modal')">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="mileage-id">
+      <div class="form-grid">
+        <div class="form-group"><label>Date *</label><input class="form-input" type="date" id="mileage-date"></div>
+        <div class="form-group"><label>Purpose</label>
+          <select class="form-input" id="mileage-purpose">
+            <option value="">— Select —</option>
+          </select>
+        </div>
+        <div class="form-group"><label>From</label><input class="form-input" id="mileage-from" placeholder="Starting location"></div>
+        <div class="form-group"><label>To</label><input class="form-input" id="mileage-to" placeholder="Destination"></div>
+        <div class="form-group"><label>Miles *</label><input class="form-input" type="number" id="mileage-miles" placeholder="0" step="0.1"></div>
+        <div class="form-group"><label>Linked Event</label><select class="form-input" id="mileage-event"></select></div>
+        <div class="form-group full"><label>Notes</label><textarea class="form-input" id="mileage-notes" rows="2"></textarea></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('mileage-modal')" data-i18n="btn.cancel">Cancel</button>
+      <button class="btn btn-primary" onclick="MileageModule.submitForm()" data-i18n="btn.save">Save Trip</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     TAB SWITCHING UTILITY
+══════════════════════════════════════════════ -->
+<script>
+function switchTab(btn, tabId) {
+  const tabBar = btn.closest('.tab-bar');
+  const section = btn.closest('.section');
+  tabBar.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  section.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  const tab = document.getElementById(tabId);
+  if (tab) tab.classList.add('active');
+}
+</script>
+
+<!-- ═══════════════════════════════════════════
+     SCRIPTS — Load order matters
+══════════════════════════════════════════════ -->
+<script src="js/config.js"></script>
+<script src="js/utils/id.js"></script>
+<script src="js/utils/format.js"></script>
+<script src="js/utils/helpers.js"></script>
+<script src="js/utils/export.js"></script>
+<script src="js/storage/db.js"></script>
+<script src="js/utils/i18n.js"></script>
+<script src="js/data/seed.js"></script>
+<script src="js/modules/clients.js"></script>
+<script src="js/modules/events.js"></script>
+<script src="js/modules/inventory.js"></script>
+<script src="js/modules/rentals.js"></script>
+<script src="js/modules/finances.js"></script>
+<script src="js/modules/employees.js"></script>
+<script src="js/modules/recipes.js"></script>
+<script src="js/modules/pricing.js"></script>
+<script src="js/modules/marketing.js"></script>
+<script src="js/modules/suppliers.js"></script>
+<script src="js/modules/mileage.js"></script>
+<script src="js/modules/analytics.js"></script>
+<script src="js/modules/settings.js"></script>
+<script src="js/ui/render.js"></script>
+<script src="js/ui/daterangepicker.js"></script>
+<script src="js/ui/calendar.js"></script>
+<script src="js/ui/invoice.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

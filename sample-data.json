@@ -1,0 +1,761 @@
+{
+  "_meta": {
+    "exported": "2026-06-07T12:00:00.000Z",
+    "version": "1.0.0"
+  },
+
+  "clients": [
+    {
+      "id": "cli_17129376_a1b2",
+      "name": "Sarah Johnson",
+      "company": "",
+      "email": "sarah.johnson@gmail.com",
+      "phone": "(555) 234-7890",
+      "address": "142 Maple Drive, Springfield, IL",
+      "referralSource": "Instagram",
+      "notes": "Loves pink and gold. Very organized bride. Prefers early morning setup.",
+      "createdAt": "2026-04-05T10:23:00.000Z"
+    },
+    {
+      "id": "cli_17162208_c3d4",
+      "name": "Linda Chen",
+      "company": "",
+      "email": "linda.chen@email.com",
+      "phone": "(555) 812-3344",
+      "address": "88 Willow Lane, Riverside, IL",
+      "referralSource": "Referral",
+      "notes": "Organizing surprise 50th for husband Marcus. White and gold palette preferred.",
+      "createdAt": "2026-05-20T14:30:00.000Z"
+    },
+    {
+      "id": "cli_17157888_e5f6",
+      "name": "Emily Rodriguez",
+      "company": "",
+      "email": "emily.rodriguez@email.com",
+      "phone": "(555) 445-9921",
+      "address": "30 Oak Street, Lakeview, IL",
+      "referralSource": "Google",
+      "notes": "Baby shower for her sister. Pastel pink and mint theme. No latex allergy concerns.",
+      "createdAt": "2026-05-15T09:15:00.000Z"
+    },
+    {
+      "id": "cli_17487360_g7h8",
+      "name": "David Park",
+      "company": "Park & Sons Auto Detailing",
+      "email": "david@parkandsons.com",
+      "phone": "(555) 671-2200",
+      "address": "500 Commerce Blvd, Downtown, IL",
+      "referralSource": "Google",
+      "notes": "Grand opening for new shop location. Wants branded look — navy and silver. Budget flexible.",
+      "createdAt": "2026-06-01T11:00:00.000Z"
+    }
+  ],
+
+  "events": [
+    {
+      "id": "evt_17134848_ab12",
+      "name": "Johnson Wedding Reception",
+      "clientId": "cli_17129376_a1b2",
+      "clientName": "Sarah Johnson",
+      "eventType": "Wedding",
+      "date": "2026-04-19",
+      "setupTime": "9:00 AM",
+      "breakdownTime": "11:00 PM",
+      "location": "Grand Oak Venue, 200 Ballroom Ave, Springfield",
+      "status": "Completed",
+      "budget": 1500,
+      "totalAmount": 1400,
+      "depositReceived": 700,
+      "notes": "Pink & gold balloon arch at entrance, 8 round-table centerpiece bouquets, gold '2026' number balloons. Went perfectly.",
+      "teamMembers": ["emp_17140032_jm01"],
+      "createdAt": "2026-04-05T10:45:00.000Z"
+    },
+    {
+      "id": "evt_17492832_cd34",
+      "name": "Chen 50th Birthday Surprise",
+      "clientId": "cli_17162208_c3d4",
+      "clientName": "Linda Chen",
+      "eventType": "Birthday Party",
+      "date": "2026-06-07",
+      "setupTime": "3:00 PM",
+      "breakdownTime": "9:00 PM",
+      "location": "88 Willow Lane, Riverside (Home)",
+      "status": "Completed",
+      "budget": 800,
+      "totalAmount": 750,
+      "depositReceived": 375,
+      "notes": "White & gold balloon garland above mantel. Foil '50' balloon cluster. 5 centerpiece bouquets. Client was thrilled.",
+      "teamMembers": ["emp_17140032_jm01"],
+      "createdAt": "2026-05-20T14:45:00.000Z"
+    },
+    {
+      "id": "evt_17504640_ef56",
+      "name": "Rodriguez Baby Shower",
+      "clientId": "cli_17157888_e5f6",
+      "clientName": "Emily Rodriguez",
+      "eventType": "Baby Shower",
+      "date": "2026-06-21",
+      "setupTime": "10:00 AM",
+      "breakdownTime": "3:00 PM",
+      "location": "The Garden Room, 45 Park Ave, Lakeview",
+      "status": "Booked",
+      "budget": 650,
+      "totalAmount": 580,
+      "depositReceived": 290,
+      "notes": "Pastel pink and mint balloon wall backdrop for photo station. 6 table bouquets.",
+      "teamMembers": [],
+      "createdAt": "2026-05-25T13:20:00.000Z"
+    },
+    {
+      "id": "evt_17517600_gh78",
+      "name": "Park & Sons Grand Opening",
+      "clientId": "cli_17487360_g7h8",
+      "clientName": "David Park",
+      "eventType": "Grand Opening",
+      "date": "2026-07-05",
+      "setupTime": "8:00 AM",
+      "breakdownTime": "6:00 PM",
+      "location": "500 Commerce Blvd, Downtown",
+      "status": "Quoted",
+      "budget": 900,
+      "totalAmount": 860,
+      "depositReceived": 0,
+      "notes": "Two balloon columns flanking entrance, welcome arch in navy and silver. Awaiting quote approval.",
+      "teamMembers": [],
+      "createdAt": "2026-06-01T11:30:00.000Z"
+    }
+  ],
+
+  "finances": [
+    {
+      "id": "fin_apr10_dep01",
+      "type": "income",
+      "date": "2026-04-10",
+      "description": "Johnson Wedding — 50% deposit",
+      "amount": 700,
+      "category": "Event Revenue",
+      "paymentMethod": "Venmo",
+      "linkedEvent": "evt_17134848_ab12",
+      "notes": "Deposit received to confirm booking.",
+      "createdAt": "2026-04-10T09:00:00.000Z"
+    },
+    {
+      "id": "fin_apr07_exp01",
+      "type": "expense",
+      "date": "2026-04-07",
+      "description": "Balloon supplies — Wedding order (pink, gold, white)",
+      "amount": 182,
+      "category": "Supplies",
+      "paymentMethod": "Credit Card",
+      "linkedEvent": "evt_17134848_ab12",
+      "notes": "200 x 11in pink, 150 x 11in gold, 50 x foil stars. Balloon World USA.",
+      "createdAt": "2026-04-07T14:30:00.000Z"
+    },
+    {
+      "id": "fin_apr16_exp02",
+      "type": "expense",
+      "date": "2026-04-16",
+      "description": "Helium tank refill — pre-wedding",
+      "amount": 68,
+      "category": "Supplies",
+      "paymentMethod": "Cash",
+      "linkedEvent": "evt_17134848_ab12",
+      "notes": "Full tank for wedding setup.",
+      "createdAt": "2026-04-16T11:00:00.000Z"
+    },
+    {
+      "id": "fin_apr19_inc01",
+      "type": "income",
+      "date": "2026-04-19",
+      "description": "Johnson Wedding — final payment",
+      "amount": 700,
+      "category": "Event Revenue",
+      "paymentMethod": "Bank Transfer",
+      "linkedEvent": "evt_17134848_ab12",
+      "notes": "Balance paid on event day.",
+      "createdAt": "2026-04-19T08:30:00.000Z"
+    },
+    {
+      "id": "fin_apr22_exp03",
+      "type": "expense",
+      "date": "2026-04-22",
+      "description": "Instagram sponsored post — spring promo",
+      "amount": 45,
+      "category": "Marketing",
+      "paymentMethod": "Credit Card",
+      "linkedEvent": "",
+      "notes": "3-day boost on wedding gallery reel.",
+      "createdAt": "2026-04-22T10:00:00.000Z"
+    },
+    {
+      "id": "fin_may02_exp04",
+      "type": "expense",
+      "date": "2026-05-02",
+      "description": "Electric balloon pump — Gogaon Pro 600",
+      "amount": 87,
+      "category": "Equipment",
+      "paymentMethod": "Credit Card",
+      "linkedEvent": "",
+      "notes": "Upgrade for faster inflation at large events.",
+      "createdAt": "2026-05-02T16:20:00.000Z"
+    },
+    {
+      "id": "fin_may10_inc02",
+      "type": "income",
+      "date": "2026-05-10",
+      "description": "Walk-in balloon bouquet — Mother's Day",
+      "amount": 85,
+      "category": "Event Revenue",
+      "paymentMethod": "Cash",
+      "linkedEvent": "",
+      "notes": "Small same-day bouquet order from walk-in customer.",
+      "createdAt": "2026-05-10T13:45:00.000Z"
+    },
+    {
+      "id": "fin_may15_exp05",
+      "type": "expense",
+      "date": "2026-05-15",
+      "description": "Facebook ads — Birthday Bash campaign",
+      "amount": 72,
+      "category": "Marketing",
+      "paymentMethod": "Credit Card",
+      "linkedEvent": "",
+      "notes": "2-week campaign targeting local party planners.",
+      "createdAt": "2026-05-15T09:00:00.000Z"
+    },
+    {
+      "id": "fin_may28_exp06",
+      "type": "expense",
+      "date": "2026-05-28",
+      "description": "Balloon restock — assorted sizes and colors",
+      "amount": 96,
+      "category": "Supplies",
+      "paymentMethod": "Credit Card",
+      "linkedEvent": "",
+      "notes": "Restocked 11in white, gold, and pastel colors ahead of summer season.",
+      "createdAt": "2026-05-28T15:00:00.000Z"
+    },
+    {
+      "id": "fin_jun03_exp07",
+      "type": "expense",
+      "date": "2026-06-03",
+      "description": "Helium tank rental — Chen Birthday",
+      "amount": 75,
+      "category": "Supplies",
+      "paymentMethod": "Cash",
+      "linkedEvent": "evt_17492832_cd34",
+      "notes": "Medium helium tank for birthday event.",
+      "createdAt": "2026-06-03T10:30:00.000Z"
+    },
+    {
+      "id": "fin_jun04_exp08",
+      "type": "expense",
+      "date": "2026-06-04",
+      "description": "Ribbon, weights, foil balloons — Chen Birthday",
+      "amount": 58,
+      "category": "Supplies",
+      "paymentMethod": "Cash",
+      "linkedEvent": "evt_17492832_cd34",
+      "notes": "White satin ribbon, gold weights, '50' foil set.",
+      "createdAt": "2026-06-04T14:00:00.000Z"
+    },
+    {
+      "id": "fin_jun05_inc03",
+      "type": "income",
+      "date": "2026-06-05",
+      "description": "Chen Birthday — 50% deposit",
+      "amount": 375,
+      "category": "Deposit",
+      "paymentMethod": "Zelle",
+      "linkedEvent": "evt_17492832_cd34",
+      "notes": "Deposit paid to confirm.",
+      "createdAt": "2026-06-05T11:00:00.000Z"
+    },
+    {
+      "id": "fin_jun07_inc04",
+      "type": "income",
+      "date": "2026-06-07",
+      "description": "Chen Birthday — final balance",
+      "amount": 375,
+      "category": "Event Revenue",
+      "paymentMethod": "Cash",
+      "linkedEvent": "evt_17492832_cd34",
+      "notes": "Paid on day of event.",
+      "createdAt": "2026-06-07T09:00:00.000Z"
+    },
+    {
+      "id": "fin_jun07_exp09",
+      "type": "expense",
+      "date": "2026-06-07",
+      "description": "Business card reprint — updated logo",
+      "amount": 34,
+      "category": "Marketing",
+      "paymentMethod": "Credit Card",
+      "linkedEvent": "",
+      "notes": "250 cards from Vistaprint.",
+      "createdAt": "2026-06-07T08:00:00.000Z"
+    }
+  ],
+
+  "employees": [
+    {
+      "id": "emp_17140032_jm01",
+      "recordType": "employee",
+      "name": "Jessica Martinez",
+      "role": "Balloon Artist & Setup Assistant",
+      "email": "jessica.m@email.com",
+      "phone": "(555) 300-4412",
+      "hourlyRate": 15,
+      "active": true,
+      "notes": "Available weekends. Great with organic garlands and arches.",
+      "createdAt": "2026-04-01T09:00:00.000Z"
+    },
+    {
+      "id": "ts_17134848_ts01",
+      "recordType": "timesheet",
+      "employeeId": "emp_17140032_jm01",
+      "date": "2026-04-19",
+      "hours": 4,
+      "linkedEvent": "evt_17134848_ab12",
+      "notes": "Full setup and teardown assist for Johnson Wedding.",
+      "createdAt": "2026-04-19T22:00:00.000Z"
+    },
+    {
+      "id": "ts_17492832_ts02",
+      "recordType": "timesheet",
+      "employeeId": "emp_17140032_jm01",
+      "date": "2026-06-07",
+      "hours": 3,
+      "linkedEvent": "evt_17492832_cd34",
+      "notes": "Setup for Chen Birthday surprise. Quick and clean execution.",
+      "createdAt": "2026-06-07T20:00:00.000Z"
+    }
+  ],
+
+  "inventory": [
+    {
+      "id": "inv_001_pink11",
+      "name": "11\" Round Balloons — Pink",
+      "sku": "BAL-11-PNK",
+      "category": "Balloons",
+      "quantity": 180,
+      "reorderPoint": 50,
+      "unitCost": 0.15,
+      "supplier": "Balloon World USA",
+      "notes": "Standard latex. Most used for weddings and baby showers.",
+      "createdAt": "2026-04-01T08:00:00.000Z"
+    },
+    {
+      "id": "inv_002_white11",
+      "name": "11\" Round Balloons — White",
+      "sku": "BAL-11-WHT",
+      "category": "Balloons",
+      "quantity": 120,
+      "reorderPoint": 50,
+      "unitCost": 0.15,
+      "supplier": "Balloon World USA",
+      "notes": "Essential neutral color.",
+      "createdAt": "2026-04-01T08:00:00.000Z"
+    },
+    {
+      "id": "inv_003_gold11",
+      "name": "11\" Round Balloons — Gold",
+      "sku": "BAL-11-GLD",
+      "category": "Balloons",
+      "quantity": 90,
+      "reorderPoint": 40,
+      "unitCost": 0.18,
+      "supplier": "Balloon World USA",
+      "notes": "Premium metallic gold.",
+      "createdAt": "2026-04-01T08:00:00.000Z"
+    },
+    {
+      "id": "inv_004_mint11",
+      "name": "11\" Round Balloons — Mint",
+      "sku": "BAL-11-MNT",
+      "category": "Balloons",
+      "quantity": 60,
+      "reorderPoint": 30,
+      "unitCost": 0.16,
+      "supplier": "Balloon World USA",
+      "notes": "For baby showers and gender reveals.",
+      "createdAt": "2026-05-28T12:00:00.000Z"
+    },
+    {
+      "id": "inv_005_foilstar",
+      "name": "Foil Star Balloons — Gold 18\"",
+      "sku": "FOIL-STAR-GLD",
+      "category": "Foil Balloons",
+      "quantity": 22,
+      "reorderPoint": 10,
+      "unitCost": 1.20,
+      "supplier": "Party City Wholesale",
+      "notes": "Great for centerpiece toppers.",
+      "createdAt": "2026-04-01T08:00:00.000Z"
+    },
+    {
+      "id": "inv_006_foilnumber50",
+      "name": "Foil Number Balloons — Assorted (0–9)",
+      "sku": "FOIL-NUM-AST",
+      "category": "Foil Balloons",
+      "quantity": 8,
+      "reorderPoint": 5,
+      "unitCost": 2.50,
+      "supplier": "Party City Wholesale",
+      "notes": "Used for milestone birthdays and anniversaries.",
+      "createdAt": "2026-04-01T08:00:00.000Z"
+    },
+    {
+      "id": "inv_007_ribbon",
+      "name": "White Satin Ribbon — 100ft Roll",
+      "sku": "RIB-WHT-100",
+      "category": "Accessories",
+      "quantity": 4,
+      "reorderPoint": 3,
+      "unitCost": 3.50,
+      "supplier": "Party City Wholesale",
+      "notes": "Standard ribbon for bouquet ties.",
+      "createdAt": "2026-04-01T08:00:00.000Z"
+    },
+    {
+      "id": "inv_008_weights",
+      "name": "Balloon Weights — Gold (pack of 10)",
+      "sku": "WGT-GLD-10PK",
+      "category": "Weights",
+      "quantity": 14,
+      "reorderPoint": 8,
+      "unitCost": 0.75,
+      "supplier": "Party City Wholesale",
+      "notes": "Reusable where possible.",
+      "createdAt": "2026-04-01T08:00:00.000Z"
+    },
+    {
+      "id": "inv_009_pump",
+      "name": "Electric Balloon Pump — Gogaon Pro 600",
+      "sku": "PUMP-ELEC-001",
+      "category": "Pumps",
+      "quantity": 2,
+      "reorderPoint": 1,
+      "unitCost": 87,
+      "supplier": "",
+      "notes": "Primary inflation pump. Purchased May 2026.",
+      "createdAt": "2026-05-02T16:30:00.000Z"
+    },
+    {
+      "id": "inv_010_archframe",
+      "name": "Balloon Arch Frame — 10ft Adjustable",
+      "sku": "FRAME-ARCH-10",
+      "category": "Frames",
+      "quantity": 2,
+      "reorderPoint": 1,
+      "unitCost": 35,
+      "supplier": "",
+      "notes": "Collapsible PVC frame. Fits in car trunk.",
+      "createdAt": "2026-04-01T08:00:00.000Z"
+    },
+    {
+      "id": "inv_011_pink_pastel",
+      "name": "11\" Round Balloons — Pastel Pink",
+      "sku": "BAL-11-PASPNK",
+      "category": "Balloons",
+      "quantity": 75,
+      "reorderPoint": 30,
+      "unitCost": 0.16,
+      "supplier": "Balloon World USA",
+      "notes": "Softer pink for baby showers.",
+      "createdAt": "2026-05-28T12:00:00.000Z"
+    },
+    {
+      "id": "inv_012_navy11",
+      "name": "11\" Round Balloons — Navy Blue",
+      "sku": "BAL-11-NVY",
+      "category": "Balloons",
+      "quantity": 0,
+      "reorderPoint": 30,
+      "unitCost": 0.18,
+      "supplier": "Balloon World USA",
+      "notes": "Needed for Park Grand Opening — must reorder.",
+      "createdAt": "2026-06-01T11:00:00.000Z"
+    }
+  ],
+
+  "rentals": [
+    {
+      "id": "rnt_item_001",
+      "recordType": "item",
+      "name": "Gold Sequin Backdrop — 8×8ft",
+      "category": "Backdrop",
+      "description": "Shimmery gold sequin fabric backdrop. Perfect for photo booths and head tables.",
+      "dailyRate": 75,
+      "deposit": 100,
+      "status": "Available",
+      "createdAt": "2026-04-01T08:00:00.000Z"
+    },
+    {
+      "id": "rnt_item_002",
+      "recordType": "item",
+      "name": "White Pillar Column Stands — Pair",
+      "category": "Prop",
+      "description": "Two adjustable white column stands, 3–5ft. Ideal for balloon columns at entrances.",
+      "dailyRate": 35,
+      "deposit": 50,
+      "status": "Available",
+      "createdAt": "2026-04-01T08:00:00.000Z"
+    }
+  ],
+
+  "recipes": [
+    {
+      "id": "rec_001_arch",
+      "name": "Classic 10ft Balloon Arch",
+      "designType": "Balloon Arch",
+      "colors": "#EC4899, #FFFFFF, #F59E0B",
+      "setupDuration": "2 hours",
+      "laborHours": 2.5,
+      "laborRate": 15,
+      "notes": "Standard organic garland arch. Works for weddings, parties, and grand openings. Attach to adjustable PVC frame.",
+      "ingredients": [
+        { "name": "11\" Round Balloons — Pink", "size": "11\"", "qty": 40, "unitCost": 0.15 },
+        { "name": "11\" Round Balloons — White", "size": "11\"", "qty": 40, "unitCost": 0.15 },
+        { "name": "11\" Round Balloons — Gold", "size": "11\"", "qty": 20, "unitCost": 0.18 },
+        { "name": "Foil Star Balloons — Gold 18\"", "size": "18\"", "qty": 4, "unitCost": 1.20 },
+        { "name": "White Satin Ribbon — 100ft Roll", "size": "—", "qty": 1, "unitCost": 3.50 },
+        { "name": "Balloon Arch Frame — 10ft Adjustable", "size": "—", "qty": 1, "unitCost": 0 }
+      ],
+      "createdAt": "2026-04-02T09:00:00.000Z"
+    },
+    {
+      "id": "rec_002_centerpiece",
+      "name": "Elegant 5-Balloon Centerpiece Bouquet",
+      "designType": "Balloon Bouquet",
+      "colors": "#FFFFFF, #F59E0B",
+      "setupDuration": "20 minutes",
+      "laborHours": 0.4,
+      "laborRate": 15,
+      "notes": "Table centerpiece with 3 latex + 1 foil star topper + 1 chrome balloon. Tied to gold weight.",
+      "ingredients": [
+        { "name": "11\" Round Balloons — White", "size": "11\"", "qty": 3, "unitCost": 0.15 },
+        { "name": "11\" Round Balloons — Gold", "size": "11\"", "qty": 1, "unitCost": 0.18 },
+        { "name": "Foil Star Balloons — Gold 18\"", "size": "18\"", "qty": 1, "unitCost": 1.20 },
+        { "name": "Balloon Weights — Gold (pack of 10)", "size": "—", "qty": 1, "unitCost": 0.75 },
+        { "name": "White Satin Ribbon — 100ft Roll", "size": "—", "qty": 0.1, "unitCost": 3.50 }
+      ],
+      "createdAt": "2026-04-02T09:30:00.000Z"
+    }
+  ],
+
+  "marketing": [
+    {
+      "id": "mkt_camp_001",
+      "recordType": "campaign",
+      "name": "Spring Wedding Season",
+      "platform": "Instagram",
+      "startDate": "2026-04-01",
+      "endDate": "2026-04-30",
+      "adSpend": 45,
+      "leadsGenerated": 6,
+      "revenueGenerated": 1400,
+      "notes": "Promoted Johnson Wedding photos. Great ROI — generated multiple inquiries.",
+      "createdAt": "2026-04-01T08:00:00.000Z"
+    },
+    {
+      "id": "mkt_camp_002",
+      "recordType": "campaign",
+      "name": "Birthday Bash Special — Summer",
+      "platform": "Facebook",
+      "startDate": "2026-05-15",
+      "endDate": "2026-06-30",
+      "adSpend": 72,
+      "leadsGenerated": 5,
+      "revenueGenerated": 750,
+      "notes": "Targeting local parents planning summer birthday parties.",
+      "createdAt": "2026-05-15T09:00:00.000Z"
+    },
+    {
+      "id": "mkt_post_001",
+      "recordType": "post",
+      "platform": "Instagram",
+      "date": "2026-04-21",
+      "caption": "We had the most beautiful time creating this pink & gold balloon arch for Sarah's wedding day! 🌸✨ Every detail was crafted with love. DM us for your event! #BalloonArch #WeddingBalloons #BalloonDecor",
+      "hashtags": "#balloonarch #weddingdecor #balloondecorations #pinkandgold #weddingday #bloomandfloat",
+      "status": "Posted",
+      "createdAt": "2026-04-20T20:00:00.000Z"
+    },
+    {
+      "id": "mkt_post_002",
+      "recordType": "post",
+      "platform": "Instagram",
+      "date": "2026-06-10",
+      "caption": "Turned this living room into a golden wonderland for a surprise 50th! 🎈🥂 Our white & gold garland + foil number balloons were the perfect party backdrop. Book your next celebration with us!",
+      "hashtags": "#50thbirthday #birthdayballoons #balloongarland #surpriseparty #goldballoons #bloomandfloat",
+      "status": "Scheduled",
+      "createdAt": "2026-06-07T10:00:00.000Z"
+    },
+    {
+      "id": "mkt_post_003",
+      "recordType": "post",
+      "platform": "Facebook",
+      "date": "2026-06-21",
+      "caption": "Baby on the way! 🍼💕 We're so excited to set up this dreamy pastel balloon wall for Emily's baby shower this weekend. Stay tuned for the reveal! #BabyShower #BalloonWall #ComingSoon",
+      "hashtags": "#babyshower #babyshowerideas #balloonwall #pastelballoons #bloomandfloat",
+      "status": "Draft",
+      "createdAt": "2026-06-07T10:30:00.000Z"
+    }
+  ],
+
+  "suppliers": [
+    {
+      "id": "sup_001_bwusa",
+      "recordType": "supplier",
+      "name": "Balloon World USA",
+      "email": "orders@balloonworldusa.com",
+      "phone": "(800) 555-0192",
+      "website": "https://www.balloonworldusa.com",
+      "leadTime": 3,
+      "minOrder": 50,
+      "preferred": true,
+      "notes": "Best pricing on bulk latex. Free shipping over $150. Account #BWU-44821.",
+      "createdAt": "2026-04-01T08:00:00.000Z"
+    },
+    {
+      "id": "sup_002_pctywhl",
+      "recordType": "supplier",
+      "name": "Party City Wholesale",
+      "email": "wholesale@partycity.com",
+      "phone": "(800) 555-0388",
+      "website": "https://www.partycity.com",
+      "leadTime": 5,
+      "minOrder": 75,
+      "preferred": false,
+      "notes": "Good for foil balloons and accessories. Slightly higher prices but good variety.",
+      "createdAt": "2026-04-01T08:00:00.000Z"
+    },
+    {
+      "id": "ord_001_apr07",
+      "recordType": "order",
+      "supplierId": "sup_001_bwusa",
+      "supplierName": "Balloon World USA",
+      "orderDate": "2026-04-07",
+      "status": "Received",
+      "items": "200 x 11in Pink (#63), 150 x 11in White (#01), 50 x 11in Gold Metallic (#61)",
+      "total": 182,
+      "notes": "For Johnson Wedding. Arrived April 10, all in good condition.",
+      "createdAt": "2026-04-07T14:00:00.000Z"
+    },
+    {
+      "id": "ord_002_may28",
+      "recordType": "order",
+      "supplierId": "sup_001_bwusa",
+      "supplierName": "Balloon World USA",
+      "orderDate": "2026-05-28",
+      "status": "Received",
+      "items": "120 x 11in White (#01), 80 x 11in Pastel Pink (#56), 60 x 11in Mint (#53), 75 x 11in Gold Metallic (#61)",
+      "total": 96,
+      "notes": "Summer restock. Arrived June 1.",
+      "createdAt": "2026-05-28T15:00:00.000Z"
+    }
+  ],
+
+  "mileage": [
+    {
+      "id": "mil_apr07_001",
+      "date": "2026-04-07",
+      "purpose": "Supply Pickup",
+      "from": "Home — 22 Sunflower Ct, Northfield",
+      "to": "Balloon World USA, 304 Industrial Park Rd",
+      "miles": 12.5,
+      "linkedEvent": "",
+      "notes": "Picked up supplies for Johnson Wedding.",
+      "createdAt": "2026-04-07T15:00:00.000Z"
+    },
+    {
+      "id": "mil_apr19_001",
+      "date": "2026-04-19",
+      "purpose": "Event Delivery",
+      "from": "Home — 22 Sunflower Ct, Northfield",
+      "to": "Grand Oak Venue, 200 Ballroom Ave, Springfield",
+      "miles": 18.3,
+      "linkedEvent": "evt_17134848_ab12",
+      "notes": "Delivery + full setup for Johnson Wedding.",
+      "createdAt": "2026-04-19T08:00:00.000Z"
+    },
+    {
+      "id": "mil_apr19_002",
+      "date": "2026-04-19",
+      "purpose": "Event Pickup",
+      "from": "Grand Oak Venue, 200 Ballroom Ave, Springfield",
+      "to": "Home — 22 Sunflower Ct, Northfield",
+      "miles": 18.3,
+      "linkedEvent": "evt_17134848_ab12",
+      "notes": "Return trip after teardown.",
+      "createdAt": "2026-04-19T23:30:00.000Z"
+    },
+    {
+      "id": "mil_may28_001",
+      "date": "2026-05-28",
+      "purpose": "Supply Pickup",
+      "from": "Home — 22 Sunflower Ct, Northfield",
+      "to": "Balloon World USA, 304 Industrial Park Rd",
+      "miles": 10.2,
+      "linkedEvent": "",
+      "notes": "Summer restock run.",
+      "createdAt": "2026-05-28T16:00:00.000Z"
+    },
+    {
+      "id": "mil_jun03_001",
+      "date": "2026-06-03",
+      "purpose": "Supply Pickup",
+      "from": "Home — 22 Sunflower Ct, Northfield",
+      "to": "Airgas Supply Co., 88 Commerce Way",
+      "miles": 8.5,
+      "linkedEvent": "evt_17492832_cd34",
+      "notes": "Helium tank pickup for Chen Birthday.",
+      "createdAt": "2026-06-03T10:00:00.000Z"
+    },
+    {
+      "id": "mil_jun07_001",
+      "date": "2026-06-07",
+      "purpose": "Event Delivery",
+      "from": "Home — 22 Sunflower Ct, Northfield",
+      "to": "88 Willow Lane, Riverside",
+      "miles": 15.7,
+      "linkedEvent": "evt_17492832_cd34",
+      "notes": "Delivery and setup for Chen 50th Birthday Surprise.",
+      "createdAt": "2026-06-07T13:00:00.000Z"
+    },
+    {
+      "id": "mil_jun07_002",
+      "date": "2026-06-07",
+      "purpose": "Event Pickup",
+      "from": "88 Willow Lane, Riverside",
+      "to": "Home — 22 Sunflower Ct, Northfield",
+      "miles": 15.7,
+      "linkedEvent": "evt_17492832_cd34",
+      "notes": "Return after event.",
+      "createdAt": "2026-06-07T21:30:00.000Z"
+    }
+  ],
+
+  "settings": [
+    {
+      "id": "config",
+      "businessName": "Bloom & Float Balloons",
+      "ownerName": "Ashley Monroe",
+      "email": "hello@bloomandfloat.com",
+      "phone": "(555) 198-7463",
+      "address": "22 Sunflower Ct, Northfield, IL 60093",
+      "website": "www.bloomandfloat.com",
+      "currency": "$",
+      "laborRate": 15,
+      "mileageRate": 0.67,
+      "overheadPercent": 15,
+      "defaultMargin": 40,
+      "theme": "light",
+      "language": "en",
+      "backupReminder": true,
+      "updatedAt": "2026-06-07T12:00:00.000Z"
+    }
+  ],
+
+  "gallery": []
+}
